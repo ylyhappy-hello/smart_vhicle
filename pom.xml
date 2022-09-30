@@ -303,11 +303,11 @@
                 <version>${ruoyi-vue-plus.version}</version>
             </dependency>
 
-            <!-- demo模块 -->
+            <!-- yly的业务模块 -->
             <dependency>
                 <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-demo</artifactId>
-                <version>${ruoyi-vue-plus.version}</version>
+                <artifactId>extendByYly</artifactId>
+                <version>4.3.0</version>
             </dependency>
 
         </dependencies>
@@ -320,7 +320,7 @@
         <module>ruoyi-job</module>
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
-        <module>ruoyi-demo</module>
+        <module>extendByYly</module>
         <module>ruoyi-extend</module>
         <module>ruoyi-oss</module>
         <module>ruoyi-sms</module>

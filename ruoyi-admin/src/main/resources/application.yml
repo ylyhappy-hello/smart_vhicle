@@ -133,9 +133,8 @@ security:
     - /*/api-docs/**
     # druid 监控配置
     - /druid/**
-    # actuator 监控配置
-    - /actuator
-    - /actuator/**
+    # 方便测试的免检目录
+    - /nocheck/*
 
 # MyBatisPlus配置
 # https://baomidou.com/config/
@@ -209,7 +208,7 @@ springdoc:
   #这里定义了两个分组，可定义多个，也可以不定义
   group-configs:
     - group: 1.演示模块
-      packages-to-scan: com.ruoyi.demo
+      packages-to-scan: com.ruoyi.extend
     - group: 2.系统模块
       packages-to-scan: com.ruoyi.web
     - group: 3.代码生成模块

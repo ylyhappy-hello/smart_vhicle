@@ -72,10 +72,10 @@
             <artifactId>ruoyi-generator</artifactId>
         </dependency>
 
-        <!--  demo模块  -->
+        <!--  yly的业务模块  -->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-demo</artifactId>
+            <artifactId>extendByYly</artifactId>
         </dependency>
 
     </dependencies>
