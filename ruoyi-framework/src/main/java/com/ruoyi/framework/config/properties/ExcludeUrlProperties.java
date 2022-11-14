@@ -1,5 +1,7 @@
 package com.ruoyi.framework.config.properties;
 
+import cn.dev33.satoken.annotation.SaIgnore;
+import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.hutool.core.util.ReUtil;
 import com.ruoyi.common.annotation.Anonymous;
 import com.ruoyi.common.utils.spring.SpringUtils;
@@ -20,7 +22,10 @@ import java.util.regex.Pattern;
  * 设置注解允许匿名访问的url
  *
  * @author Lion Li
+ * @deprecated 将在后续版本使用Sa-Token注解 {@link SaIgnore} 代替，
+ * 底层过滤方法详见 {@link SaInterceptor#preHandle(HttpServletRequest, HttpServletResponse, Object)}
  */
+@Deprecated
 @Lazy
 @Component
 public class ExcludeUrlProperties implements InitializingBean {
