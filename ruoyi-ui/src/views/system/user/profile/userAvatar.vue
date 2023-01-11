@@ -12,6 +12,7 @@
             :autoCropWidth="options.autoCropWidth"
             :autoCropHeight="options.autoCropHeight"
             :fixedBox="options.fixedBox"
+            :outputType="options.outputType"
             @realTime="realTime"
             v-if="visible"
           />
@@ -56,6 +57,7 @@
 import store from "@/store";
 import { VueCropper } from "vue-cropper";
 import { uploadAvatar } from "@/api/system/user";
+import { debounce } from '@/utils'
 
 export default {
   components: { VueCropper },
@@ -78,9 +80,11 @@ export default {
         autoCropWidth: 200, // 默认生成截图框宽度
         autoCropHeight: 200, // 默认生成截图框高度
         fixedBox: true, // 固定截图框大小 不允许改变
+        outputType:"png", // 默认生成截图为PNG格式
         filename: ''
       },
-      previews: {}
+      previews: {},
+      resizeHandler: null
     };
   },
   methods: {
@@ -91,6 +95,16 @@ export default {
     // 打开弹出层结束时的回调
     modalOpened() {
       this.visible = true;
+      if (!this.resizeHandler) {
+        this.resizeHandler = debounce(() => {
+          this.refresh()
+        }, 100)
+      }
+      window.addEventListener("resize", this.resizeHandler)
+    },
+    // 刷新组件
+    refresh() {
+      this.$refs.cropper.refresh();
     },
     // 覆盖默认的上传行为
     requestUpload() {
@@ -144,6 +158,7 @@ export default {
     closeDialog() {
       this.options.img = store.getters.avatar
       this.visible = false;
+      window.removeEventListener("resize", this.resizeHandler)
     }
   }
 };

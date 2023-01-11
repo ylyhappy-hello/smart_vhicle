@@ -19,7 +19,7 @@ export default {
             }
         }
     }
-}
+};
 </script>
 <style scoped>
 #app .theme-picker {
