@@ -94,7 +94,6 @@
 <!--            <artifactId>apm-toolkit-trace</artifactId>-->
 <!--            <version>${与你的agent探针版本保持一致}</version>-->
 <!--        </dependency>-->
-
     </dependencies>
 
     <build>
@@ -104,9 +103,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
-                <configuration>
-                    <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
-                </configuration>
+<!--                <configuration>-->
+<!--                    <fork>true</fork> &lt;!&ndash; 如果没有该配置，devtools不会生效 &ndash;&gt;-->
+<!--                </configuration>-->
                 <executions>
                     <execution>
                         <goals>
