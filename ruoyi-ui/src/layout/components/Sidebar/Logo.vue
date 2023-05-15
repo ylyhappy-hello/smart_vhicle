@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      title: 'RuoYi-Vue-Plus',
+      title: '电动车识别与管理系统',
       logo: logoImg
     }
   }
