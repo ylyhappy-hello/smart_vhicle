@@ -37,4 +37,17 @@ public class SysRegisterController extends BaseController {
         registerService.register(user);
         return R.ok();
     }
+
+    /**
+     * 用户注册
+     */
+    @SaIgnore
+    @PostMapping("/sms/register")
+    public R<Void> smsRegister(@Validated @RequestBody RegisterBody user) {
+        if (!("true".equals(configService.selectConfigByKey("sys.account.registerUser")))) {
+            return R.fail("当前系统没有开启注册功能！");
+        }
+        registerService.register(user);
+        return R.ok();
+    }
 }

@@ -65,6 +65,11 @@
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-oss</artifactId>
         </dependency>
+        <!--短信登陆模块-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-sms</artifactId>
+        </dependency>
 
         <!-- 代码生成-->
         <dependency>

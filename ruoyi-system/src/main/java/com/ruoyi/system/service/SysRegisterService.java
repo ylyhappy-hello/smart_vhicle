@@ -64,6 +64,38 @@ public class SysRegisterService {
         asyncService.recordLogininfor(username, Constants.REGISTER, MessageUtils.message("user.register.success"), request);
     }
 
+
+    /**
+     * 手机号注册
+     */
+    public void smsRegister(RegisterBody registerBody) {
+        HttpServletRequest request = ServletUtils.getRequest();
+        String username = registerBody.getUsername();
+        String password = registerBody.getPassword();
+
+        // 校验用户类型是否存在
+        String userType = UserType.getUserType(registerBody.getUserType()).getUserType();
+
+        boolean captchaEnabled = configService.selectCaptchaEnabled();
+        // 验证码开关
+        if (captchaEnabled) {
+            validateCaptcha(username, registerBody.getCode(), registerBody.getUuid(), request);
+        }
+        SysUser sysUser = new SysUser();
+        sysUser.setUserName(username);
+        sysUser.setNickName(username);
+        sysUser.setPassword(BCrypt.hashpw(password));
+        sysUser.setUserType(userType);
+
+        if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(sysUser))) {
+            throw new UserException("user.register.save.error", username);
+        }
+        boolean regFlag = userService.registerUser(sysUser);
+        if (!regFlag) {
+            throw new UserException("user.register.error");
+        }
+        asyncService.recordLogininfor(username, Constants.REGISTER, MessageUtils.message("user.register.success"), request);
+    }
     /**
      * 校验验证码
      *
